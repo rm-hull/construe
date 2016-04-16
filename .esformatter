@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "esformatter-dot-notation",
+    "esformatter-remove-trailing-commas",
+    "esformatter-braces",
+    "esformatter-var-each",
+    "esformatter-equals",
+    "esformatter-quotes",
+    "esformatter-jsx-ignore",
+    "esformatter-semicolons"
+  ],
+  "quotes": {
+    "type": "double"
+  }
+}
