@@ -23,7 +23,7 @@ Run locally with:
 
 Find the longest single words from the given word; querying the web service for the word 'compute':
 
-    $ curl -s https://construe-qoqzvwmfuq.now.sh/longest/compute| jq .
+    $ curl -s https://construe-qoqzvwmfuq.now.sh/longest/compute | jq .
 
 returns the same anagrams:
 
