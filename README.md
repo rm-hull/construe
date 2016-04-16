@@ -1,6 +1,45 @@
 # 1. construe (v.)
 
-_make sense of; assign a meaning to_
+> make sense of; assign a meaning to
+
+_construe_ is a (partial) node.js port of [ars magna](https://github.com/rm-hull/args-magna)
+deployed onto a [zeit.co/now](https://zeit.co/now#) instance.
+
+## Usage
+
+### Longest word anagrams
+
+Find the longest single words from the given word; querying the web service for the word 'compute':
+
+    $ curl -s https://construe-qoqzvwmfuq.now.sh/longest/compute| jq .
+
+returns the same anagrams:
+
+```json
+[
+  "compute",
+  "comet",
+  "coupe",
+  "tempo",
+  "come",
+  "cope",
+  "cote",
+  "coup",
+  "cute",
+  "mope",
+  "mote",
+  "mute",
+  "poem",
+  "poet",
+  "pout",
+  "temp",
+  "tome"
+]
+```
+
+### Multiword anagrams
+
+> TODO
 
 ## License
 

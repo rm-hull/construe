@@ -8,7 +8,7 @@ function makeIndex(lang) {
   return loadWords(lang)
     .then(splitLines)
     .then((words) => {
-      return  Promise.resolve({
+      return Promise.resolve({
         dict: words,
         index: {
           sortedLetter: partitionByLetters(words)
