@@ -5,6 +5,18 @@
 _construe_ is a (partial) node.js port of [ars magna](https://github.com/rm-hull/args-magna)
 deployed onto a [zeit.co/now](https://zeit.co/now#) instance.
 
+## Build
+
+[![Build Status][travis-badge]][travis-url]
+[![Coverage Status][coverage-badge]][coverage-url]
+[![Dependency Status][david-badge]][david-url]
+
+Run locally with:
+
+    $ npm install
+    $ gulp build
+    $ node dist/app.js
+
 ## Usage
 
 ### Longest word anagrams
@@ -64,3 +76,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+[travis-badge]: https://api.travis-ci.org/rm-hull/construe.svg
+[travis-url]: https://travis-ci.org/rm-hull/construe
+[david-badge]: https://david-dm.org/rm-hull/construe.svg
+[david-url]: https://david-dm.org/rm-hull/construe
+[coverage-badge]: https://codeclimate.com/github/rm-hull/construe/badges/coverage.svg
+[coverage-url]: https://codeclimate.com/github/rm-hull/construe/coverage
