@@ -3,7 +3,6 @@ node_js:
   - "4"
 before_script:
   - npm install -g gulp
-script: gulp coverage
-addons:
-  code_climate:
-    repo_token: cc5405333de8292f5f689d20984cdfa9fee1b9c903a96d477c67440fcd9927a6
+script: 
+  - gulp coverage
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js

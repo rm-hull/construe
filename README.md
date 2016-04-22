@@ -82,5 +82,5 @@ SOFTWARE.
 [travis-url]: https://travis-ci.org/rm-hull/construe
 [david-badge]: https://david-dm.org/rm-hull/construe.svg
 [david-url]: https://david-dm.org/rm-hull/construe
-[coverage-badge]: https://codeclimate.com/github/rm-hull/construe/badges/coverage.svg
-[coverage-url]: https://codeclimate.com/github/rm-hull/construe/coverage
+[coverage-badge]: https://coveralls.io/repos/rm-hull/construe/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/r/rm-hull/construe?branch=master)
