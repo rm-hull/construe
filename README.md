@@ -2,7 +2,7 @@
 
 > make sense of; assign a meaning to
 
-_construe_ is a (partial) node.js port of [ars magna](https://github.com/rm-hull/args-magna)
+_construe_ is a (partial) node.js port of [ars magna](https://github.com/rm-hull/ars-magna)
 deployed onto a [zeit.co/now](https://zeit.co/now#) instance.
 
 ## Build
