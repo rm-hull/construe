@@ -5,7 +5,6 @@ var istanbul = require("gulp-istanbul");
 var isparta = require("isparta");
 var mocha = require("gulp-mocha");
 var eslint = require("gulp-eslint");
-var esformatter = require("gulp-esformatter");
 var babel = require("gulp-babel");
 
 require("babel-core/register");
@@ -32,12 +31,6 @@ gulp.task("lint", function() {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
-});
-
-gulp.task("format", function() {
-  return gulp.src(config.src)
-    .pipe(esformatter())
-    .pipe(gulp.dest("./lib"));
 });
 
 gulp.task("coverage", function() {
