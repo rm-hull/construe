@@ -1,11 +1,26 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 import "./index.css";
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root");
+if (container == null) {
+  throw new Error("The #root element wasn't found");
+}
+
+const root = createRoot(container);
+const queryClient = new QueryClient();
+
+root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <BrowserRouter basename="/construe">
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
