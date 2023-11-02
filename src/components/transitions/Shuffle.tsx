@@ -1,14 +1,8 @@
-import { HStack, useInterval } from "@chakra-ui/react";
-import { useMemo, useState } from "react";
-import Letter from "./Letter";
+import { HStack } from "@chakra-ui/react";
+import { useMemo } from "react";
+import Letter from "../Letter";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-
-type TransitionProps = {
-  wordList: string[];
-  delay?: number;
-  upperCase?: boolean;
-  maxIterations?: number;
-};
+import useCounter from "../../hooks/useCounter";
 
 function generateKeys(input: string): string[] {
   const charCounts: Record<string, number> = {};
@@ -23,19 +17,24 @@ function generateKeys(input: string): string[] {
   return result;
 }
 
-export default function Transitions({
+type ShuffleProps = {
+  wordList: string[];
+  delay?: number;
+  upperCase?: boolean;
+  maxIterations?: number;
+};
+
+export default function Shuffle({
   wordList,
   delay = 3000,
   upperCase = false,
   maxIterations,
-}: TransitionProps): JSX.Element {
-  const [index, setIndex] = useState(0);
+}: ShuffleProps): JSX.Element {
   const [animationParent] = useAutoAnimate();
-  const shouldCancel = maxIterations !== undefined && index >= maxIterations;
+  const shouldCancel = (counter: number): boolean => maxIterations !== undefined && counter >= maxIterations;
+  const counter = useCounter(delay, shouldCancel);
 
-  useInterval(() => setIndex((prev) => prev + 1), shouldCancel ? null : delay);
-
-  let word = wordList[index % wordList.length];
+  let word = wordList[counter % wordList.length];
   if (upperCase) {
     word = word?.toUpperCase();
   }

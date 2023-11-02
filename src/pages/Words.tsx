@@ -1,5 +1,5 @@
 import useWordList from "../hooks/useWordList";
-import Transitions from "../components/Transition";
+import Shuffle from "../components/transitions/Shuffle";
 import { useMemo } from "react";
 import Centered from "../components/Centered";
 
@@ -29,7 +29,7 @@ export default function Words(): JSX.Element {
 
   return (
     <Centered>
-      <Transitions wordList={shuffled} upperCase />
+      <Shuffle wordList={shuffled} upperCase />
     </Centered>
   );
 }

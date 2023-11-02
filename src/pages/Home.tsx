@@ -1,4 +1,4 @@
-import Transitions from "../components/Transition";
+import Shuffle from "../components/transitions/Shuffle";
 import Centered from "../components/Centered";
 
 const anagrams = [
@@ -35,7 +35,7 @@ const anagrams = [
 export default function Home(): JSX.Element {
   return (
     <Centered>
-      <Transitions wordList={anagrams} upperCase />
+      <Shuffle wordList={anagrams} upperCase />
     </Centered>
   );
 }
