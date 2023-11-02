@@ -7,6 +7,7 @@ type TransitionProps = {
   wordList: string[];
   delay?: number;
   upperCase?: boolean;
+  maxIterations?: number;
 };
 
 function generateKeys(input: string): string[] {
@@ -22,15 +23,22 @@ function generateKeys(input: string): string[] {
   return result;
 }
 
-export default function Transitions({ wordList, delay = 3000, upperCase = false }: TransitionProps): JSX.Element {
+export default function Transitions({
+  wordList,
+  delay = 3000,
+  upperCase = false,
+  maxIterations,
+}: TransitionProps): JSX.Element {
   const [index, setIndex] = useState(0);
   const [animationParent] = useAutoAnimate();
+  const shouldCancel = maxIterations !== undefined && index >= maxIterations;
 
-  useInterval(() => {
-    setIndex((prev) => (prev + 1) % wordList.length);
-  }, delay);
+  useInterval(() => setIndex((prev) => prev + 1), shouldCancel ? null : delay);
 
-  const word = upperCase ? wordList[index]?.toUpperCase() : wordList[index];
+  let word = wordList[index % wordList.length];
+  if (upperCase) {
+    word = word?.toUpperCase();
+  }
   const keys = useMemo(() => generateKeys(word), [word]);
 
   return (
