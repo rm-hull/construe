@@ -1,4 +1,4 @@
-import { ChakraProvider, ColorModeScript, createLocalStorageManager, theme } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, createLocalStorageManager } from "@chakra-ui/react";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
@@ -6,8 +6,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import "./index.css";
 import ErrorFallback from "./components/ErrorBoundary";
+import { theme } from "./theme";
 
 const container = document.getElementById("root");
 if (container == null) {

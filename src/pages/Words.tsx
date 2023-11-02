@@ -1,22 +1,35 @@
 import useWordList from "../hooks/useWordList";
+import Transitions from "../components/Transition";
+import { useMemo } from "react";
+import Centered from "../components/Centered";
+
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffledArray = [...array];
+
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  return shuffledArray;
+}
 
 export default function Words(): JSX.Element {
   const locale = "en-GB";
   const { data, isLoading, error } = useWordList(locale);
+  const shuffled = useMemo(() => shuffleArray(data ?? []), [data]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Centered>Loading...</Centered>;
   }
 
   if (error !== null) {
-    return <div>Error: {error.message}</div>;
+    throw error;
   }
 
   return (
-    <div>
-      {(data ?? []).slice(0, 15).map((word, index) => (
-        <p key={index}>{word}</p>
-      ))}
-    </div>
+    <Centered>
+      <Transitions wordList={shuffled} upperCase />
+    </Centered>
   );
 }
