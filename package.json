@@ -1,6 +1,5 @@
 {
   "name": "construe",
-  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -17,6 +16,7 @@
     "@formkit/auto-animate": "^0.8.0",
     "axios": "^1.6.0",
     "framer-motion": "^10.16.4",
+    "ramda": "^0.29.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.11",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin-ts": "^1.0.0",
+    "@types/ramda": "^0",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.9.0",

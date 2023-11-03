@@ -1,8 +1,9 @@
-import { HStack, VStack, useInterval } from "@chakra-ui/react";
-import { useMemo, useState } from "react";
-import Letter from "../Letter";
+import { VStack } from "@chakra-ui/react";
+import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Shuffle from "./Shuffle";
+import useCounter from "../../hooks/useCounter";
+import * as R from "ramda";
 
 type AppendProps = {
   wordList: string[];
@@ -11,13 +12,21 @@ type AppendProps = {
   maxListSize?: number;
 };
 
-export default function Append({ wordList, delay = 3000, upperCase = false, maxListSize }: AppendProps): JSX.Element {
-  const [index, setIndex] = useState(0);
-  const [words, setWords] = useState([]);
+export default function Append({ wordList, delay = 1000, upperCase = false, maxListSize }: AppendProps): JSX.Element {
   const [animationParent] = useAutoAnimate();
-  const shouldCancel = index >= wordList.length;
+  const [words, setWords] = useState<string[]>([]);
 
-  useInterval(() => setIndex((prev) => prev + 1), shouldCancel ? null : delay);
+  const shouldCancel = (counter: number): boolean => counter >= wordList.length;
+  const update = (counter: number): void =>
+    setWords((prev) => R.takeLast(maxListSize ?? wordList.length, [...prev, wordList[counter]]));
 
-  return <VStack ref={animationParent}></VStack>;
+  useCounter(delay, shouldCancel, update);
+
+  return (
+    <VStack ref={animationParent}>
+      {words.map((word) => (
+        <Shuffle key={word} wordList={[wordList[0], word]} upperCase={upperCase} maxIterations={1} delay={500} />
+      ))}
+    </VStack>
+  );
 }

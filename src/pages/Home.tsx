@@ -1,5 +1,5 @@
-import Shuffle from "../components/transitions/Shuffle";
 import Centered from "../components/Centered";
+import Append from "../components/transitions/Append";
 
 const anagrams = [
   // "anagrams",
@@ -35,7 +35,7 @@ const anagrams = [
 export default function Home(): JSX.Element {
   return (
     <Centered>
-      <Shuffle wordList={anagrams} upperCase />
+      <Append wordList={anagrams} upperCase delay={750} />
     </Centered>
   );
 }
