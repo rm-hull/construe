@@ -32,7 +32,7 @@ const anagrams = [
   "tonsure",
 ];
 
-export default function Home(): JSX.Element {
+export default function Home() {
   return (
     <Centered>
       <Append wordList={anagrams} upperCase delay={750} />

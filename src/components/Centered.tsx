@@ -1,9 +1,9 @@
 import { Box, Center } from "@chakra-ui/react";
 import type { PropsWithChildren } from "react";
 
-export default function Centered({ children }: PropsWithChildren): JSX.Element {
+export default function Centered({ children }: PropsWithChildren) {
   return (
-    <Box h="100vh" display="flex" alignItems="center" justifyContent="center">
+    <Box display="flex" alignItems="start" justifyContent="center">
       <Center>{children}</Center>
     </Box>
   );

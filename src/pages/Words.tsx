@@ -14,7 +14,7 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffledArray;
 }
 
-export default function Words(): JSX.Element {
+export default function Words() {
   const locale = "en-GB";
   const { data, isLoading, error } = useWordList(locale);
   const shuffled = useMemo(() => shuffleArray(data ?? []), [data]);

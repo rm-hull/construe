@@ -24,12 +24,7 @@ type ShuffleProps = {
   maxIterations?: number;
 };
 
-export default function Shuffle({
-  wordList,
-  delay = 3000,
-  upperCase = false,
-  maxIterations,
-}: ShuffleProps): JSX.Element {
+export default function Shuffle({ wordList, delay = 3000, upperCase = false, maxIterations }: ShuffleProps) {
   const [animationParent] = useAutoAnimate();
   const shouldCancel = (counter: number): boolean => maxIterations !== undefined && counter >= maxIterations;
   const counter = useCounter(delay, shouldCancel);

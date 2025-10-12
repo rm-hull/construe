@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Words from "./pages/Words";
 import Centered from "./components/Centered";
 
-export default function App(): JSX.Element {
+export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />

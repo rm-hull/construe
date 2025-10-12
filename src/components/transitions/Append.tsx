@@ -12,7 +12,7 @@ type AppendProps = {
   maxListSize?: number;
 };
 
-export default function Append({ wordList, delay = 1000, upperCase = false, maxListSize }: AppendProps): JSX.Element {
+export default function Append({ wordList, delay = 1000, upperCase = false, maxListSize }: AppendProps) {
   const [animationParent] = useAutoAnimate();
   const [words, setWords] = useState<string[]>([]);
 
