@@ -3214,7 +3214,7 @@ __metadata:
     eslint-plugin-promise: "npm:^6.1.1"
     eslint-plugin-react: "npm:^7.33.2"
     eslint-plugin-react-hooks: "npm:^4.6.0"
-    eslint-plugin-react-refresh: "npm:^0.4.3"
+    eslint-plugin-react-refresh: "npm:^0.4.5"
     framer-motion: "npm:^10.16.4"
     prettier: "npm:^3.0.3"
     ramda: "npm:^0.29.1"
@@ -3873,12 +3873,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:^0.4.3":
-  version: 0.4.3
-  resolution: "eslint-plugin-react-refresh@npm:0.4.3"
+"eslint-plugin-react-refresh@npm:^0.4.5":
+  version: 0.4.5
+  resolution: "eslint-plugin-react-refresh@npm:0.4.5"
   peerDependencies:
     eslint: ">=7"
-  checksum: 5343a75aebdadac355cde440099f16cc693bf238774775c6be55e32ea9026fe570ed0162ba3da83552e30d8da8c716d7e51650bd496ead478fee55ed1468dd82
+  checksum: ea696811c6264d2efee10efe07f80aaae75ded66c941d8d5ce65e15e6c4bb8ad50ac225310ed04f35ed68d2d57937ba4c6f06d9306e78931d583648abf496a41
   languageName: node
   linkType: hard
 
