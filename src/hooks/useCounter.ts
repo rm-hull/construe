@@ -1,5 +1,5 @@
-import { useInterval } from "@chakra-ui/react";
 import { useState } from "react";
+import { useInterval } from "react-use";
 
 type ShouldCancel = (counter: number) => boolean;
 type Update = (counter: number) => void;

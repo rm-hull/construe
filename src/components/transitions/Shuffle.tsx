@@ -36,7 +36,7 @@ export default function Shuffle({ wordList, delay = 3000, upperCase = false, max
   const keys = useMemo(() => generateKeys(word), [word]);
 
   return (
-    <HStack ref={animationParent} spacing={0.5} p={1}>
+    <HStack ref={animationParent} gap={0.5} p={1}>
       {word.split("").map((ch, index) => (
         <Letter key={keys[index]}>{ch}</Letter>
       ))}

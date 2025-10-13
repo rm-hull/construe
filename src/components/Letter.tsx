@@ -5,5 +5,5 @@ export default function Letter({ children }: PropsWithChildren) {
   if (children === " ") {
     return <Box m={0.5} />;
   }
-  return <Kbd size="xl">{children}</Kbd>;
+  return <Kbd size="lg">{children}</Kbd>;
 }
