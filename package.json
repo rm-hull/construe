@@ -27,7 +27,7 @@
   "devDependencies": {
     "@chakra-ui/cli": "^3.28.0",
     "@stylistic/eslint-plugin-ts": "^4.4.1",
-    "@types/node": "^24.8.1",
+    "@types/node": "^24.9.1",
     "@types/ramda": "^0.31.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
