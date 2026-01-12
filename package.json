@@ -29,7 +29,7 @@
     "@stylistic/eslint-plugin-ts": "^4.4.1",
     "@types/node": "^25.0.6",
     "@types/ramda": "^0.31.1",
-    "@types/react": "^19.2.7",
+    "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.52.0",
