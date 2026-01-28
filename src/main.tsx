@@ -5,8 +5,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { ErrorFallback } from "./components/ErrorBoundary";
 import { Provider } from "@/components/ui/provider";
+import { ErrorFallback } from "@rm-hull/chakra-error-fallback";
 
 const container = document.getElementById("root");
 if (container == null) {
