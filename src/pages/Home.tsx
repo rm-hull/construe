@@ -1,5 +1,7 @@
+import useWordList from "@/hooks/useWordList";
 import Centered from "../components/Centered";
 import Append from "../components/transitions/Append";
+import { getAnagrams } from "@/anagram";
 
 const anagrams = [
   // "anagrams",
@@ -33,9 +35,20 @@ const anagrams = [
 ];
 
 export default function Home() {
+  const locale = "en-GB";
+  const { data, isLoading, error } = useWordList(locale);
+
+  if (isLoading) {
+    return "Loading...";
+  }
+
+  if (error) {
+    throw error;
+  }
+
   return (
     <Centered>
-      <Append wordList={anagrams} upperCase delay={750} />
+      <Append wordList={getAnagrams("construe", data ?? [], 20)} upperCase delay={750} />
     </Centered>
   );
 }

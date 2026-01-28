@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 
 export default function useWordList(locale: string): UseQueryResult<string[], AxiosError> {
   return useQuery(["words", locale], async () => {
-    const resp = await axios.get<string>(`data/${locale}/words.txt`);
+    const resp = await axios.get<string>(`/construe/data/${locale}/words.txt`);
     return resp.data.split("\n");
   });
 }
