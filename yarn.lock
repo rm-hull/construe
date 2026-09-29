@@ -1896,12 +1896,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^26.6.2":
-  version: 26.6.2
-  resolution: "@types/node@npm:26.6.2"
+"@types/node@npm:^26.6.3":
+  version: 26.6.3
+  resolution: "@types/node@npm:26.6.3"
   dependencies:
     undici-types: "npm:~8.9.0"
-  checksum: 10c0/bb411ff5863a79a28ffa4ebadf2499d44046aa114d25a7a6c78f57def118123a0a7dea99e8fe38849099e9dba2b41b8853a7a282037618559f58653c35e7c5c5
+  checksum: 10c0/51070287167d157d246a5ad83e6ead93aa310bbd9cc880ecd1f244a00c2a31491620f997fbbb6ba4ce164388694827999ec68c1d16c3fb64c1037056e64613c7
   languageName: node
   linkType: hard
 
@@ -3788,7 +3788,7 @@ __metadata:
     "@rolldown/plugin-babel": "npm:^0.2.4"
     "@stylistic/eslint-plugin-ts": "npm:^4.4.1"
     "@types/babel__core": "npm:^7.20.5"
-    "@types/node": "npm:^26.6.2"
+    "@types/node": "npm:^26.6.3"
     "@types/ramda": "npm:^0.32.0"
     "@types/react": "npm:^19.3.0"
     "@types/react-dom": "npm:^19.3.0"
