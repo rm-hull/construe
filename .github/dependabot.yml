@@ -11,6 +11,9 @@ updates:
       interval: weekly
     versioning-strategy: increase
     groups:
+      tanstack:
+        patterns:
+          - "@tanstack/*"
       eslint:
         patterns:
           - "*eslint*"
@@ -20,6 +23,16 @@ updates:
       chakra:
         patterns:
           - "@chakra-ui/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      testing-library:
+        patterns:
+          - "@testing-library/*"
+          - "*jsdom*"
   - package-ecosystem: github-actions
     directory: /
     schedule:
