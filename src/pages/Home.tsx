@@ -1,6 +1,6 @@
 import Shuffle from "@/components/transitions/Shuffle";
 import Centered from "../components/Centered";
-import { Box, Button, Group, Heading, Input, Presence, RadioGroup, Spinner, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Group, Heading, HStack, Input, NativeSelect, Presence, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useState, useCallback } from "react";
 import useWordList from "@/hooks/useWordList";
 import { findLongestWordAnagrams, solveAnagrams } from "@/utils/anagram";
@@ -16,6 +16,7 @@ export default function Home() {
   const [results, setResults] = useState<string[]>([]);
   const [solving, setSolving] = useState(false);
   const [mode, setMode] = useState<SolveMode>("longest");
+  const [minWordLength, setMinWordLength] = useState(4);
 
   const locale = getLocale();
   const { data: wordList, isLoading: wordListLoading } = useWordList(locale);
@@ -37,16 +38,16 @@ export default function Home() {
     if (mode === "exact") {
       solver = findLongestWordAnagrams(wordList, inputValue, { minWordLength: inputValue.length });
     } else if (mode === "longest") {
-      solver = findLongestWordAnagrams(wordList, inputValue, { minWordLength: 3 });
+      solver = findLongestWordAnagrams(wordList, inputValue, { minWordLength });
     } else {
-      solver = solveAnagrams(wordList, inputValue, { minWordLength: 3 });
+      solver = solveAnagrams(wordList, inputValue, { minWordLength });
     }
 
     for await (const result of solver) {
       setResults((prev) => [...prev, result]);
     }
     setSolving(false);
-  }, [inputValue, mode, wordList]);
+  }, [inputValue, mode, minWordLength, wordList]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -71,25 +72,36 @@ export default function Home() {
           <VStack>
             <Heading size="md">Anagram Solver</Heading>
 
-            <RadioGroup.Root value={mode} onValueChange={(e) => setMode(e.value as SolveMode)}>
+            <HStack gap={4} alignItems="center">
               <Group>
-                <RadioGroup.Item value="exact">
-                  <RadioGroup.ItemHiddenInput />
-                  <RadioGroup.ItemIndicator />
-                  <RadioGroup.ItemText>Exact</RadioGroup.ItemText>
-                </RadioGroup.Item>
-                <RadioGroup.Item value="multi">
-                  <RadioGroup.ItemHiddenInput />
-                  <RadioGroup.ItemIndicator />
-                  <RadioGroup.ItemText>Multi-word</RadioGroup.ItemText>
-                </RadioGroup.Item>
-                <RadioGroup.Item value="longest">
-                  <RadioGroup.ItemHiddenInput />
-                  <RadioGroup.ItemIndicator />
-                  <RadioGroup.ItemText>Longest words</RadioGroup.ItemText>
-                </RadioGroup.Item>
+                <Text fontSize="sm" color="fg.muted" mr={2}>Mode</Text>
+                <NativeSelect.Root w="140px" size="xs">
+                  <NativeSelect.Field value={mode} onChange={(e) => setMode(e.target.value as SolveMode)}>
+                    <option value="longest">Longest words</option>
+                    <option value="multi">Multi-word</option>
+                    <option value="exact">Exact</option>
+                  </NativeSelect.Field>
+                  <NativeSelect.Indicator />
+                </NativeSelect.Root>
               </Group>
-            </RadioGroup.Root>
+
+              <Group>
+                <Text fontSize="sm" color="fg.muted" mr={2}>Min word length</Text>
+                <NativeSelect.Root w="80px" size="xs">
+                  <NativeSelect.Field
+                    value={minWordLength}
+                    onChange={(e) => setMinWordLength(parseInt(e.target.value, 10))}
+                  >
+                    {Array.from({ length: 9 }, (_, i) => i + 2).map((n) => (
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
+                    ))}
+                  </NativeSelect.Field>
+                  <NativeSelect.Indicator />
+                </NativeSelect.Root>
+              </Group>
+            </HStack>
 
             <Group attached w="full" maxW="lg">
               <Input
@@ -122,7 +134,8 @@ export default function Home() {
                 </Group>
                 <Box
                   overflowY="auto"
-                  maxH="80vh"
+                  maxW="70vw"
+                  maxH="70vh"
                   style={{
                     columnCount: 3,
                     columnGap: "2rem",

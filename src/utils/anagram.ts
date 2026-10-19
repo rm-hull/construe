@@ -76,14 +76,26 @@ async function* multiWordAsync(
   index: IndexByLength,
   word: string,
   minSize: number,
-  prefix: string
+  prefix: string,
+  count: { current: number }
 ): AsyncGenerator<string> {
   if (!word) {
     yield prefix.trim();
+    count.current++;
+    // Yield control periodically to keep UI responsive
+    if (count.current % 50 === 0) {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    }
     return;
   }
-  for (const w of findIn(index, word, minSize)) {
-    yield* multiWordAsync(index, remainingChars(word, w), minSize, `${w} ${prefix}`);
+  const candidates = findIn(index, word, minSize);
+  for (let i = 0; i < candidates.length; i++) {
+    const w = candidates[i];
+    yield* multiWordAsync(index, remainingChars(word, w), minSize, `${w} ${prefix}`, count);
+    // Yield control periodically between branches to keep UI responsive
+    if (count.current % 25 === 0) {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    }
   }
 }
 
@@ -101,7 +113,8 @@ export async function* solveAnagrams(
   const { minWordLength = 2 } = options;
   const normalized = input.toLowerCase().replace(/[^a-z]/g, "");
   const index = buildIndexByLength(wordList);
-  for await (const result of multiWordAsync(index, normalized, minWordLength, "")) {
+  const count = { current: 0 };
+  for await (const result of multiWordAsync(index, normalized, minWordLength, "", count)) {
     yield result;
   }
 }
