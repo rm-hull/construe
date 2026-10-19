@@ -1,6 +1,6 @@
 import { HStack } from "@chakra-ui/react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import useCounter from "../../hooks/useCounter";
 import Letter from "../Letter";
 
@@ -22,12 +22,26 @@ type ShuffleProps = {
   delay?: number;
   upperCase?: boolean;
   maxIterations?: number;
+  onFinished?: () => void;
 };
 
-export default function Shuffle({ wordList, delay = 3000, upperCase = false, maxIterations }: ShuffleProps) {
+export default function Shuffle({
+  wordList,
+  delay = 3000,
+  upperCase = false,
+  maxIterations,
+  onFinished,
+}: ShuffleProps) {
   const [animationParent] = useAutoAnimate();
   const shouldCancel = (counter: number): boolean => maxIterations !== undefined && counter >= maxIterations;
   const counter = useCounter(delay, shouldCancel);
+
+  const isFinished = maxIterations !== undefined && counter >= maxIterations;
+  useEffect(() => {
+    if (isFinished && onFinished) {
+      onFinished();
+    }
+  }, [isFinished, onFinished]);
 
   let word = wordList[counter % wordList.length];
   if (upperCase) {

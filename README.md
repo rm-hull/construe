@@ -1,27 +1,27 @@
-# React + TypeScript + Vite
+# Construe
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Anagram solver built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+Enter a word and get all valid multi-word anagrams, displayed incrementally as they are found.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Word List
 
-## Expanding the ESLint configuration
+The solver uses [CSW21](https://www.collinsdictionary.com/scrabble/csw21.php) (Collins Scrabble Words 2021), the UK and international Scrabble standard. The list contains 279,076 valid words.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The file was downloaded from a [public gist](https://gist.githubusercontent.com/scrabblewords/6b7d99f608cd428efe2a21228c62a788/raw/CSW21.txt) and stored at `public/data/en-GB/words.txt`.
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- **Frontend:** React with TypeScript
+- **Build:** Vite
+- **Package manager:** pnpm
+- **UI:** Chakra UI
+- **Testing:** Vitest
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Commands
+
+- `pnpm dev` — Start the development server
+- `pnpm build` — Build for production
+- `pnpm lint` — Lint the source code
+- `pnpm format` — Format the source code with Prettier
+- `pnpm test` — Run tests
