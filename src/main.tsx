@@ -1,12 +1,12 @@
+import { ErrorFallback } from "@rm-hull/chakra-error-fallback";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
 import { Provider } from "@/components/ui/provider";
-import { ErrorFallback } from "@rm-hull/chakra-error-fallback";
+import App from "./App";
 
 const container = document.getElementById("root");
 if (container == null) {

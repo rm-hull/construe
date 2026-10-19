@@ -1,7 +1,7 @@
-import useWordList from "../hooks/useWordList";
-import Shuffle from "../components/transitions/Shuffle";
 import { useMemo } from "react";
 import Centered from "../components/Centered";
+import Shuffle from "../components/transitions/Shuffle";
+import useWordList from "../hooks/useWordList";
 
 function shuffleArray<T>(array: T[]): T[] {
   const shuffledArray = [...array];

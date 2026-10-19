@@ -1,9 +1,9 @@
 import { Box, VStack } from "@chakra-ui/react";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import Shuffle from "./Shuffle";
-import useCounter from "../../hooks/useCounter";
 import * as R from "ramda";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useCounter from "../../hooks/useCounter";
+import Shuffle from "./Shuffle";
 
 type AppendProps = {
   wordList: string[];

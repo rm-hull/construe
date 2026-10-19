@@ -1,8 +1,8 @@
 import { HStack } from "@chakra-ui/react";
-import { useMemo } from "react";
-import Letter from "../Letter";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useMemo } from "react";
 import useCounter from "../../hooks/useCounter";
+import Letter from "../Letter";
 
 function generateKeys(input: string): string[] {
   const charCounts: Record<string, number> = {};

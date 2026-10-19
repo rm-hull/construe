@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
+import Centered from "./components/Centered";
 import Home from "./pages/Home";
 import Words from "./pages/Words";
-import Centered from "./components/Centered";
 
 export default function App() {
   return (

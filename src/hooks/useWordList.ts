@@ -1,6 +1,6 @@
 import type { AxiosError } from "axios";
-import type { UseQueryResult } from "react-query";
 import axios from "axios";
+import type { UseQueryResult } from "react-query";
 import { useQuery } from "react-query";
 
 export default function useWordList(locale: string): UseQueryResult<string[], AxiosError> {
