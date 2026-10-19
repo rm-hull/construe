@@ -1,41 +1,19 @@
+import Shuffle from "@/components/transitions/Shuffle";
 import Centered from "../components/Centered";
 import Append from "../components/transitions/Append";
 
 const anagrams = [
-  // "anagrams",
-  // "ars magna",
-
-  "construe",
-  "cornutes",
-  "counters",
-  "recounts",
   "trounces",
-  "conster",
-  "contuse",
-  "conures",
-  "cornets",
-  "cornute",
-  "counter",
-  "couters",
-  "creston",
-  "cretons",
-  "cronets",
-  "croutes",
-  "econuts",
-  "encrust",
-  "recount",
-  "rounces",
-  "scouter",
-  "trounce",
-  "uncoest",
-  "tenours",
-  "tonsure",
+  "recounts",
+  "counters",
+  "cornutes",
+  "construe",
 ];
 
 export default function Home() {
   return (
     <Centered>
-      <Append wordList={anagrams} upperCase delay={750} />
+      <Shuffle wordList={anagrams} upperCase delay={750} />
     </Centered>
   );
 }

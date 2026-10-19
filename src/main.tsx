@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "@/components/ui/provider";
+import { getLocale } from "./utils/locale";
+import { fetchWordList } from "./hooks/useWordList";
 import App from "./App";
 
 const container = document.getElementById("root");
@@ -15,6 +17,9 @@ if (container == null) {
 
 const root = createRoot(container);
 const queryClient = new QueryClient();
+
+const locale = getLocale();
+queryClient.prefetchQuery(["words", locale], () => fetchWordList(locale));
 
 root.render(
   <React.StrictMode>
