@@ -1,6 +1,18 @@
 import Shuffle from "@/components/transitions/Shuffle";
 import Centered from "../components/Centered";
-import { Box, Button, Group, Heading, HStack, Input, NativeSelect, Presence, Spinner, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Group,
+  Heading,
+  HStack,
+  Input,
+  NativeSelect,
+  Presence,
+  Spinner,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { useState, useCallback } from "react";
 import useWordList from "@/hooks/useWordList";
 import { findLongestWordAnagrams, solveAnagrams } from "@/utils/anagram";
@@ -74,7 +86,9 @@ export default function Home() {
 
             <HStack gap={4} alignItems="center">
               <Group>
-                <Text fontSize="sm" color="fg.muted" mr={2}>Mode</Text>
+                <Text fontSize="sm" color="fg.muted" mr={2}>
+                  Mode
+                </Text>
                 <NativeSelect.Root w="140px" size="xs">
                   <NativeSelect.Field value={mode} onChange={(e) => setMode(e.target.value as SolveMode)}>
                     <option value="longest">Longest words</option>
@@ -86,7 +100,9 @@ export default function Home() {
               </Group>
 
               <Group>
-                <Text fontSize="sm" color="fg.muted" mr={2}>Min word length</Text>
+                <Text fontSize="sm" color="fg.muted" mr={2}>
+                  Min word length
+                </Text>
                 <NativeSelect.Root w="80px" size="xs">
                   <NativeSelect.Field
                     value={minWordLength}
@@ -142,13 +158,7 @@ export default function Home() {
                   }}
                 >
                   {results.map((result, i) => (
-                    <Text
-                      key={i}
-                      fontSize="lg"
-                      textTransform="uppercase"
-                      pb={2}
-                      style={{ breakInside: "avoid" }}
-                    >
+                    <Text key={i} fontSize="lg" textTransform="uppercase" pb={2} style={{ breakInside: "avoid" }}>
                       {result}
                     </Text>
                   ))}
