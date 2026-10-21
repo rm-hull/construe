@@ -22,7 +22,7 @@ export default function Home() {
   const { data: wordList, isLoading: wordListLoading } = useWordList(locale);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toUpperCase().replace(/[^A-Z ]/g, "");
+    const value = e.target.value.toUpperCase().replace(/[^A-Z? ]/g, "");
     setInputValue(value);
   }, []);
 

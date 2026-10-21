@@ -32,13 +32,38 @@ function buildIndexByLetters(wordList: string[]): IndexByLetters {
   return index;
 }
 
-// Check if a target word can be made from the source letters
+// Count occurrences of each character in a string
+function charCount(s: string): { [char: string]: number } {
+  const counts: { [char: string]: number } = {};
+  for (const c of s) {
+    counts[c] = (counts[c] || 0) + 1;
+  }
+  return counts;
+}
+
+// Check if a target word can be made from the source letters, treating "?" as a wildcard that only matches letters
 function canMake(source: string, target: string): boolean {
-  if (!target) return true;
-  const char = target[0];
-  const idx = source.indexOf(char);
-  if (idx === -1) return false;
-  return canMake(source.slice(0, idx) + source.slice(idx + 1), target.slice(1));
+  // Count wildcards in source
+  const sourceCounts = charCount(source);
+  const wildcards = sourceCounts["?"] || 0;
+  delete sourceCounts["?"];
+
+  const targetCounts = charCount(target);
+
+  let neededWildcards = 0;
+  for (const char in targetCounts) {
+    // Only use wildcards to match letters (a-z), not any character
+    if (!/^[a-z]$/.test(char)) {
+      return false;
+    }
+    const targetNeed = targetCounts[char];
+    const sourceHave = sourceCounts[char] || 0;
+    if (targetNeed > sourceHave) {
+      neededWildcards += targetNeed - sourceHave;
+    }
+  }
+
+  return neededWildcards <= wildcards;
 }
 
 // Remove the letters of word2 from word1
@@ -61,10 +86,11 @@ function* wordsOfSize(index: IndexByLength, max: number, minSize: number): Gener
 
 // Find words in the index that can be made from the given letters
 function findIn(index: IndexByLength, word: string, minSize: number): string[] {
-  const rarest = rarestLetter(word);
+  const hasWildcard = word.includes("?");
+  const rarest = hasWildcard ? "" : rarestLetter(word);
   const results: string[] = [];
   for (const w of wordsOfSize(index, word.length, minSize)) {
-    if (w.includes(rarest) && canMake(word, w)) {
+    if ((hasWildcard || w.includes(rarest)) && canMake(word, w)) {
       results.push(w);
     }
   }
@@ -129,18 +155,21 @@ export async function* findLongestWordAnagrams(
   options: { minWordLength?: number } = {}
 ): AsyncGenerator<string> {
   const { minWordLength = 3 } = options;
-  const normalized = input.toLowerCase().replace(/[^a-z]/g, "");
-  const sortedInput = sortLetters(normalized);
+  const normalized = input.toLowerCase().replace(/[^a-z?]/g, "");
+  const hasWildcard = normalized.includes("?");
+  const sortedInput = sortLetters(normalized.replace(/\?/g, ""));
   const indexByLetters = buildIndexByLetters(wordList);
 
   // Collect all matching single words with their lengths
   const matches: Array<{ word: string; length: number }> = [];
 
-  // First, check for exact anagrams (same length, same letters)
-  const exactMatches = indexByLetters[sortedInput];
-  if (exactMatches) {
-    for (const word of exactMatches) {
-      matches.push({ word, length: word.length });
+  // First, check for exact anagrams (same length, same letters) - only when no wildcards
+  if (!hasWildcard) {
+    const exactMatches = indexByLetters[sortedInput];
+    if (exactMatches) {
+      for (const word of exactMatches) {
+        matches.push({ word, length: word.length });
+      }
     }
   }
 
